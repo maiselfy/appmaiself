@@ -7,10 +7,12 @@ import {
   Poppins_500Medium,
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
-
+import { AppRoutes } from "./src/routes/app.routes";
 import Dashboard from "./src/screens/dashboard";
 
 import theme from "./src/global/styles/theme";
+
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -19,11 +21,13 @@ export default function App() {
     Poppins_700Bold,
   });
 
-  if(!fontsLoaded) return <AppLoading/>
-  
+  if (!fontsLoaded) return <AppLoading />;
+
   return (
     <ThemeProvider theme={theme}>
-      <Dashboard />
+      <NavigationContainer>
+        <AppRoutes />
+      </NavigationContainer>
     </ThemeProvider>
   );
 }
