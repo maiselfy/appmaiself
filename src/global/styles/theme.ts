@@ -10,10 +10,19 @@ export default {
     attention: "#E83F5B",
     attentionLight: "rgba(232, 63, 91,.3)",
 
-    shape: "#fff",
+    shape: "#323337",
     title: "#363F5F",
-    text: "#969CB2",
+    text: "#fff",
+    textSecondary: "#969CB2",
 
-    background: "#F0F2F5",
+    background: "#242627",
+  },
+  borderRadius: {
+    md: "8px",
+  },
+  fonts: {
+    regular: "Poppins_400Regular",
+    medium: "Poppins_500Medium",
+    bold: "Poppins_700Bold",
   },
 };
