@@ -52,3 +52,11 @@ export const UniverseBannerTitle = styled.Text`
 export const UniverseDescription = styled.Text`
   color: ${({ theme }) => theme.colors.textSecondary};
 `;
+
+export const ModulesContainer = styled.View`
+  flex: 1;
+  width: 90%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
