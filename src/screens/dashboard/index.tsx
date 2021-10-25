@@ -13,6 +13,8 @@ import {
   UniverseBannerTitle,
   UniverseDescription,
   ModulesContainer,
+  GalaxyImage,
+  BannerInfo,
 } from "./styles";
 
 const Dashboard: React.FC = () => {
@@ -32,10 +34,13 @@ const Dashboard: React.FC = () => {
         </UserInfoContainer>
       </Header>
       <UniverseBanner>
-        <UniverseBannerTitle>Veja como está seu universo</UniverseBannerTitle>
-        <UniverseDescription>
-          Aperte aqui para visualizar o universo contruído por voce até agora
-        </UniverseDescription>
+        <BannerInfo>
+          <UniverseBannerTitle>Veja como está seu universo</UniverseBannerTitle>
+          <UniverseDescription>
+            Aperte aqui para visualizar o universo contruído por voce até agora
+          </UniverseDescription>
+        </BannerInfo>
+        <GalaxyImage source={require("../../assets/stars/galaxy.png")} />
       </UniverseBanner>
       <ModulesContainer>
         <ModuleItem

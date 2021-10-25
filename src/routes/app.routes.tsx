@@ -1,10 +1,10 @@
 import React from "react";
+import { Platform } from "react-native";
 import { useTheme } from "styled-components";
 import { AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Dashboard from "../screens/dashboard";
-import { Platform } from "react-native";
-import NewFriend from "../screens/newFriend";
+import Dashboard from "../screens/Dashboard";
+import NewFriend from "../screens/NewFriend";
 import Config from "../screens/Config";
 
 const { Screen, Navigator } = createBottomTabNavigator();
@@ -23,7 +23,7 @@ export function AppRoutes() {
           height: 88,
           paddingVertical: Platform.OS === "ios" ? 20 : 0,
         },
-        tabBarShowLabel:false
+        tabBarShowLabel: false,
       }}
     >
       <Screen
@@ -44,7 +44,7 @@ export function AppRoutes() {
           ),
         }}
       />
-       <Screen
+      <Screen
         name='Configurações'
         component={Config}
         options={{

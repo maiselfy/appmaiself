@@ -8,8 +8,6 @@ import {
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
 import { AppRoutes } from "./src/routes/app.routes";
-import Dashboard from "./src/screens/dashboard";
-
 import theme from "./src/global/styles/theme";
 
 import { NavigationContainer } from "@react-navigation/native";

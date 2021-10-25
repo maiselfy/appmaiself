@@ -42,6 +42,10 @@ export const UniverseBanner = styled.View`
   background: ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   justify-content: center;
+  flex-direction: row;
+`;
+export const BannerInfo = styled.View`
+  width: ${RFPercentage(30)}px;
 `;
 export const UniverseBannerTitle = styled.Text`
   color: ${({ theme }) => theme.colors.text};
@@ -50,7 +54,13 @@ export const UniverseBannerTitle = styled.Text`
   margin-bottom: 4px;
 `;
 export const UniverseDescription = styled.Text`
+  font-size: ${RFValue(10)}px;
   color: ${({ theme }) => theme.colors.textSecondary};
+`;
+
+export const GalaxyImage = styled.Image`
+  width: ${RFValue(80)}px;
+  height: ${RFValue(80)}px;
 `;
 
 export const ModulesContainer = styled.View`
