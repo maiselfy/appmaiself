@@ -8,9 +8,9 @@ import {
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
 import { AppRoutes } from "./src/routes/app.routes";
-import theme from "./src/global/styles/theme";
-
 import { NavigationContainer } from "@react-navigation/native";
+import theme from "./src/global/styles/theme";
+import Login from "./src/screens/Login";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,6 +26,12 @@ export default function App() {
       <NavigationContainer>
         <AppRoutes />
       </NavigationContainer>
+      {/**
+       * descomente a linha abaixo e comente as linhas acima pra exibir
+       * a tela de login
+       */}
+
+      {/* <Login /> */}
     </ThemeProvider>
   );
 }
