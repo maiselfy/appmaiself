@@ -26,7 +26,7 @@ const ModuleItem: React.FC<ModuleItemProps> = ({
       <ModuleTitle>{title}</ModuleTitle>
       <ModuleSeeMore>
         <ModuleDescription>{description}</ModuleDescription>
-        <ArrowRightIcon name='arrowright' size='16' />
+        <ArrowRightIcon name='arrowright' size={16} />
       </ModuleSeeMore>
     </Module>
   );

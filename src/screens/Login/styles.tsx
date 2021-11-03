@@ -1,4 +1,5 @@
 import { Button } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
@@ -15,5 +16,5 @@ export const FormContainer = styled.View`
   background: ${({ theme }) => theme.colors.shape};
   justify-content: center;
 `;
-export const LoginBtn = styled(Touchaop)`
+export const LoginBtn = styled.Button`
 `;
