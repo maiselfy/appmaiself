@@ -10,7 +10,7 @@ import {
 import { AppRoutes } from "./src/routes/app.routes";
 import { NavigationContainer } from "@react-navigation/native";
 import theme from "./src/global/styles/theme";
-// import Login from "./src/screens/Login";
+import Login from "./src/screens/Login";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
