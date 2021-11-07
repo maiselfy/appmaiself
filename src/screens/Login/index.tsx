@@ -8,7 +8,7 @@ const Login: React.FC = () => {
     <Container>
       <FormContainer>
         <Logo source={require("../../assets/logo.png")}/>
-        <Input placeholder='Email' />
+        <Input placeholder='Email' autoComplete="email" autoCapitalize="none" />
         <Input placeholder='Senha' secureTextEntry />
         <LoginBtn>
           <LoginButtonText>Entrar</LoginButtonText>

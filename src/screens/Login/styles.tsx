@@ -7,6 +7,7 @@ export const Container = styled.View`
   flex: 1;
   background: ${({ theme }) => theme.colors.background};
   justify-content: center;
+
 `;
 
 export const FormContainer = styled.View`
@@ -33,4 +34,5 @@ export const LoginButtonText = styled.Text`
 export const Logo = styled.Image`
   width: ${RFValue(100)}px;
   height: ${RFValue(130)}px;
+  margin-bottom: ${RFValue(20)}px;
 `;

@@ -10,5 +10,5 @@ export const Container = styled(TextInput)`
   border-color: ${({ theme }) => theme.colors.textSecondary};
   border-radius: ${({ theme }) => theme.borderRadius.md}
   color: ${({ theme }) => theme.colors.text}
-  margin-bottom:10px;
+  margin-bottom:${RFValue(20)}px;
 `;
