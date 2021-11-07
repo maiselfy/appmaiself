@@ -10,7 +10,7 @@ import {
 import { AppRoutes } from "./src/routes/app.routes";
 import { NavigationContainer } from "@react-navigation/native";
 import theme from "./src/global/styles/theme";
-// import Login from "./src/screens/Login";
+import Login from "./src/screens/Login";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -23,15 +23,15 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
+      {/* <NavigationContainer>
         <AppRoutes />
-      </NavigationContainer>
+      </NavigationContainer> */}
       {/**
        * descomente a linha abaixo e comente as linhas acima pra exibir
        * a tela de login
        */}
 
-      {/* <Login /> */}
+      <Login />
     </ThemeProvider>
   );
 }
