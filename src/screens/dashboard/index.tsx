@@ -17,7 +17,7 @@ import {
   BannerInfo,
 } from "./styles";
 
-const Dashboard: React.FC = () => {
+const Dashboard: React.FC = ({navigation}) => {
   return (
     <Container>
       <Header>
@@ -47,6 +47,8 @@ const Dashboard: React.FC = () => {
           title='Hábitos'
           description='Ver seus hábitos'
           image={require("../../assets/habitsLogo.png")}
+          onPress={() => navigation.navigate('Habits')}
+
         />
         <ModuleItem
           title='Tarefas'

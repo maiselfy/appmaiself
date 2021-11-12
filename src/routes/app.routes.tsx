@@ -3,9 +3,12 @@ import { Platform } from "react-native";
 import { useTheme } from "styled-components";
 import { AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import Dashboard from "../screens/Dashboard";
 import NewFriend from "../screens/NewFriend";
 import Config from "../screens/Config";
+import { DashboardRoutes } from "./dashboard.routes";
+import Habits from "../screens/Habits";
 
 const { Screen, Navigator } = createBottomTabNavigator();
 
@@ -28,7 +31,7 @@ export function AppRoutes() {
     >
       <Screen
         name='Listagem'
-        component={Dashboard}
+        component={DashboardStack}
         options={{
           tabBarIcon: ({ size, color }) => (
             <AntDesign name='home' size={size} color={color} />
@@ -56,3 +59,12 @@ export function AppRoutes() {
     </Navigator>
   );
 }
+const Stack = createStackNavigator();
+const DashboardStack: React.FC = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name='Home' component={Dashboard} />
+      <Stack.Screen name='Habits' component={Habits} />
+    </Stack.Navigator>
+  );
+};
