@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import PropTypes from 'prop-types';
 import Input from '../../components/form/Input'
@@ -12,29 +12,29 @@ import { NavigationActions } from 'react-navigation';
 import api from '../../api/api';
 
 const Login: React.FC = () => {
-  const navigation = useNavigation();
+  const { signIn, signed } = useAuth();
 
   async function handleSignIn() {
-    navigation.navigate({key: 'Dashboard'});
+    signIn()
   }
 
   return (
     <Container>
       <FormContainer>
         <Logo source={require("../../assets/logo.png")}/>
-        <Input placeholder='Email' autoComplete="email" autoCapitalize="none"   autoCorrect={false} />
+        <Input placeholder='Email' autoCapitalize="none"   autoCorrect={false} />
         <Input placeholder='Senha' secureTextEntry autoCapitalize="none"  autoCorrect={false} />
         <ForgetPassword>
           <ForgetPasswordText> Esqueci minha senha</ForgetPasswordText>
         </ForgetPassword>
-        <LoginBtn>
+        <LoginBtn onPress={handleSignIn}>
           <LoginButtonText>Entrar</LoginButtonText>
         </LoginBtn>
         <DiscoveryMaiself>
           <DiscoveryMaiselfText> Ainda não conhece a Maiself ? 🤔</DiscoveryMaiselfText>
           <RegisterMaiselfText>Clique aqui para conhecer e mudar de vida! 🚀</RegisterMaiselfText>
         </DiscoveryMaiself>
-       <LoginGoogleBtn onPress={handleSignIn}>
+       <LoginGoogleBtn>
          <IconGoogle source={require("../../assets/google.png")}/>
          <LoginButtonText>Entrar com o Google</LoginButtonText>
        </LoginGoogleBtn>
