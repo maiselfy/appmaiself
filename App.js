@@ -10,6 +10,7 @@ import {
 import Routes from "./src/routes";
 import { AuthProvider } from "./src/hooks/useAuth";
 import theme from "./src/global/styles/theme";
+import 'react-native-gesture-handler';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
