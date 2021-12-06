@@ -23,9 +23,18 @@ const Register: React.FC = () => {
           scrollable="false"
         >
           <ProgressStep
-            label="First Step"
+            label="Primeira Etapa"
             bor
-            nextBtnTextStyle={{ color: "#6461FF", fontSize: 18 }}
+            nextBtnTextStyle={{
+              color: "#FFFFFF",
+              fontSize: 18,
+              fontWeight: "bold",
+            }}
+            nextBtnStyle={{
+              backgroundColor: "#6461FF",
+              padding: 15,
+              borderRadius: 10,
+            }}
             nextBtnText="Próximo"
           >
             <StepsContainer>
@@ -43,14 +52,26 @@ const Register: React.FC = () => {
               <Input
                 placeholder="Digite sua data de nascimento"
                 autoCapitalize="none"
+                keyboardType="phone-pad"
                 autoCorrect={false}
+                maxLength={10}
               />
             </StepsContainer>
           </ProgressStep>
           <ProgressStep
-            label="Second Step"
-            nextBtnTextStyle={{ color: "#6461FF", fontSize: 18 }}
+            label="Segunda Etapa"
             previousBtnTextStyle={{ color: "#6461FF", fontSize: 18 }}
+            previousBtnStyle={{ padding: 15 }}
+            nextBtnTextStyle={{
+              color: "#FFFFFF",
+              fontSize: 18,
+              fontWeight: "bold",
+            }}
+            nextBtnStyle={{
+              backgroundColor: "#6461FF",
+              padding: 15,
+              borderRadius: 10,
+            }}
             previousBtnText="Anterior"
             nextBtnText="Próximo"
           >
@@ -59,24 +80,37 @@ const Register: React.FC = () => {
               <Input
                 placeholder="Digite seu e-mail"
                 autoCapitalize="none"
+                keyboardType="email-address"
                 autoCorrect={false}
               />
               <Input
                 placeholder="Digite sua senha"
                 autoCapitalize="none"
                 autoCorrect={false}
+                secureTextEntry={true}
               />
               <Input
                 placeholder="Confirme sua senha"
                 autoCapitalize="none"
                 autoCorrect={false}
+                secureTextEntry={true}
               />
             </StepsContainer>
           </ProgressStep>
           <ProgressStep
-            label="Third Step"
-            nextBtnTextStyle={{ color: "#6461FF", fontSize: 18 }}
+            label="Terceira Etapa"
             previousBtnTextStyle={{ color: "#6461FF", fontSize: 18 }}
+            previousBtnStyle={{ padding: 15 }}
+            nextBtnTextStyle={{
+              color: "#FFFFFF",
+              fontSize: 18,
+              fontWeight: "bold",
+            }}
+            nextBtnStyle={{
+              backgroundColor: "#6461FF",
+              padding: 15,
+              borderRadius: 10,
+            }}
             previousBtnText="Anterior"
             finishBtnText="Cadastrar"
           >
@@ -84,11 +118,13 @@ const Register: React.FC = () => {
               <TitleSectionSteps>Dados Corporais</TitleSectionSteps>
               <Input
                 placeholder="Digite sua altura"
+                keyboardType="numeric"
                 autoCapitalize="none"
                 autoCorrect={false}
               />
               <Input
                 placeholder="Digite seu peso"
+                keyboardType="numeric"
                 autoCapitalize="none"
                 autoCorrect={false}
               />

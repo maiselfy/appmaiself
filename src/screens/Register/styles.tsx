@@ -12,7 +12,7 @@ export const Container = styled.View`
 export const FormContainer = styled.View`
   flex: 1;
   width: 100%;
-  padding: 24px;
+  padding: 30px;
   background: ${({ theme }) => theme.colors.shape};
   justify-content: center;
   align-items: center;
