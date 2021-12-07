@@ -23,12 +23,14 @@ const Register: React.FC = () => {
           scrollable="false"
         >
           <ProgressStep
-            label="Primeira Etapa"
+            label="Pessoal"
             bor
             nextBtnTextStyle={{
               color: "#FFFFFF",
               fontSize: 18,
               fontWeight: "bold",
+              width: 200,
+              textAlign: "center",
             }}
             nextBtnStyle={{
               backgroundColor: "#6461FF",
@@ -59,13 +61,20 @@ const Register: React.FC = () => {
             </StepsContainer>
           </ProgressStep>
           <ProgressStep
-            label="Segunda Etapa"
-            previousBtnTextStyle={{ color: "#6461FF", fontSize: 18 }}
-            previousBtnStyle={{ padding: 15 }}
+            label="Login"
+            previousBtnTextStyle={{
+              color: "#6461FF",
+              fontSize: 18,
+              width: 200,
+              textAlign: "center",
+            }}
+            previousBtnStyle={{ padding: 15, marginBottom: 65 }}
             nextBtnTextStyle={{
               color: "#FFFFFF",
               fontSize: 18,
               fontWeight: "bold",
+              width: 200,
+              textAlign: "center",
             }}
             nextBtnStyle={{
               backgroundColor: "#6461FF",
@@ -98,13 +107,20 @@ const Register: React.FC = () => {
             </StepsContainer>
           </ProgressStep>
           <ProgressStep
-            label="Terceira Etapa"
-            previousBtnTextStyle={{ color: "#6461FF", fontSize: 18 }}
-            previousBtnStyle={{ padding: 15 }}
+            label="Corporal"
+            previousBtnTextStyle={{
+              color: "#6461FF",
+              fontSize: 18,
+              width: 200,
+              textAlign: "center",
+            }}
+            previousBtnStyle={{ padding: 15, marginBottom: 65 }}
             nextBtnTextStyle={{
               color: "#FFFFFF",
               fontSize: 18,
               fontWeight: "bold",
+              width: 200,
+              textAlign: "center",
             }}
             nextBtnStyle={{
               backgroundColor: "#6461FF",
