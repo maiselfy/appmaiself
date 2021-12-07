@@ -36,6 +36,7 @@ const Register: React.FC = () => {
               backgroundColor: "#6461FF",
               padding: 15,
               borderRadius: 10,
+              marginBottom: 65,
             }}
             nextBtnText="Próximo"
           >
@@ -68,7 +69,7 @@ const Register: React.FC = () => {
               width: 200,
               textAlign: "center",
             }}
-            previousBtnStyle={{ padding: 15, marginBottom: 65 }}
+            previousBtnStyle={{ padding: 15 }}
             nextBtnTextStyle={{
               color: "#FFFFFF",
               fontSize: 18,
@@ -80,6 +81,7 @@ const Register: React.FC = () => {
               backgroundColor: "#6461FF",
               padding: 15,
               borderRadius: 10,
+              marginBottom: 65,
             }}
             previousBtnText="Anterior"
             nextBtnText="Próximo"
@@ -99,7 +101,7 @@ const Register: React.FC = () => {
                 secureTextEntry={true}
               />
               <Input
-                placeholder="Confirme sua senha"
+                placeholder="Confirmar sua senha"
                 autoCapitalize="none"
                 autoCorrect={false}
                 secureTextEntry={true}
@@ -114,7 +116,7 @@ const Register: React.FC = () => {
               width: 200,
               textAlign: "center",
             }}
-            previousBtnStyle={{ padding: 15, marginBottom: 65 }}
+            previousBtnStyle={{ padding: 15 }}
             nextBtnTextStyle={{
               color: "#FFFFFF",
               fontSize: 18,
@@ -126,6 +128,7 @@ const Register: React.FC = () => {
               backgroundColor: "#6461FF",
               padding: 15,
               borderRadius: 10,
+              marginBottom: 65,
             }}
             previousBtnText="Anterior"
             finishBtnText="Cadastrar"
