@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ToastAndroid } from "react-native";
+//import { ToastAndroid } from "react-native";
 import { parse } from "date-fns";
 import { ProgressSteps, ProgressStep } from "react-native-progress-steps";
 import Input from "../../components/form/Input";
@@ -24,38 +24,43 @@ const Register: React.FC = () => {
 
   async function handleRegister() {
     try {
+      console.log('Entrei na chamada')
       const response = await api.post("api/user", {
         name,
         lastname,
         email,
         password,
-        birthdate: parse(birthdate, "dd/MM/yyyy", new Date()),
+        birthdate: parse(birthdate, "ddMMyyyy", new Date()),
       });
 
       if (!response.data.message) {
-        console.log("FUNFOU");
         console.log("RESPONSE => ", response.data);
+        /*
         ToastAndroid.showWithGravity(
           "Novo usuário cadastrado com sucesso!!!",
           ToastAndroid.SHORT,
           ToastAndroid.CENTER
         );
+        */
       } else {
-        console.log("FUNFOU NADA");
-        console.log("RESPONSE => ", response.data);
+        console.log("RESPONSE ERROR=> ", response.data);
+        /*
         ToastAndroid.showWithGravity(
           `${response.data.message}`,
           ToastAndroid.SHORT,
           ToastAndroid.CENTER
         );
+        */
       }
     } catch (error) {
       console.log("ERROR => ", error);
+      /*
       ToastAndroid.showWithGravity(
         "Error interno no servidor! Por favor, tente novamente!",
         ToastAndroid.SHORT,
         ToastAndroid.CENTER
       );
+      */
     }
   }
 

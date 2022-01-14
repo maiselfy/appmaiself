@@ -19,7 +19,7 @@ import {
 } from "./styles";
 
 const Dashboard: React.FC = () => {
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
 
   async function handleSignOut() {
     signOut()
@@ -31,7 +31,7 @@ const Dashboard: React.FC = () => {
         <UserInfoContainer>
           <View>
             <WelcomeAgainMsg>Olá novamente 👋🏻</WelcomeAgainMsg>
-            <UserNameText>Marcos Gênesis</UserNameText>
+            <UserNameText>{user?.name}</UserNameText>
           </View>
           <UserAvatar
             source={{
