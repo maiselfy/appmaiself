@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { parse } from "date-fns";
 import { ProgressSteps, ProgressStep } from "react-native-progress-steps";
 import Input from "../../components/form/Input";
+import { useAuth } from "../../hooks/useAuth";
 import {
   Container,
   FormContainer,
@@ -11,57 +12,26 @@ import {
 } from "./styles";
 
 import api from "../../api/api";
+import { Controller } from "react-hook-form";
+
+const registerSchema = yup.object({
+  name: yup.string().required(),
+  lastname: yup.string().required(),
+  birthdate: yup.date().required(),
+  email: yup.string().email().required(),
+  password: Yup.string().required('Password is required'),
+  passwordConfirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
+});
 
 const Register: React.FC = () => {
-  const [name, setName] = useState<string>("");
-  const [lastname, setLastName] = useState<string>("");
-  const [birthdate, setBirthDate] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [height, setHeight] = useState<string>("");
-  const [weight, setWeight] = useState<string>("");
+  const { control, handleSubmit } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
 
-  async function handleRegister() {
-    try {
-      console.log('Entrei na chamada')
-      const response = await api.post("api/user", {
-        name,
-        lastname,
-        email,
-        password,
-        birthdate: parse(birthdate, "ddMMyyyy", new Date()),
-      });
+  const { registerUser, user } = useAuth();
 
-      if (!response.data.message) {
-        console.log("RESPONSE => ", response.data);
-        /*
-        ToastAndroid.showWithGravity(
-          "Novo usuário cadastrado com sucesso!!!",
-          ToastAndroid.SHORT,
-          ToastAndroid.CENTER
-        );
-        */
-      } else {
-        console.log("RESPONSE ERROR=> ", response.data);
-        /*
-        ToastAndroid.showWithGravity(
-          `${response.data.message}`,
-          ToastAndroid.SHORT,
-          ToastAndroid.CENTER
-        );
-        */
-      }
-    } catch (error) {
-      console.log("ERROR => ", error);
-      /*
-      ToastAndroid.showWithGravity(
-        "Error interno no servidor! Por favor, tente novamente!",
-        ToastAndroid.SHORT,
-        ToastAndroid.CENTER
-      );
-      */
-    }
+  async function handleRegister({ name, lastname, birthdate, email, password, passwordConfirmation }: RegisterData) {
+    registerUser();
   }
 
   return (
@@ -97,29 +67,49 @@ const Register: React.FC = () => {
           >
             <StepsContainer>
               <TitleSectionSteps>Dados Pessoais</TitleSectionSteps>
-              <Input
+              <Controller>
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                <Input
                 placeholder="Digite seu nome"
                 autoCapitalize="none"
                 autoCorrect={false}
-                value={name}
-                onChangeText={(name) => setName(name)}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
               />
-              <Input
+                )}
+                name='name'
+              </Controller>
+              <Controller>
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                <Input
                 placeholder="Digite seu sobrenome"
                 autoCapitalize="none"
                 autoCorrect={false}
-                value={lastname}
-                onChangeText={(lastname) => setLastName(lastname)}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
               />
-              <Input
+                )}
+                name='lastname'
+              </Controller>
+
+              <Controller>
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                <Input
                 placeholder="Digite sua data de nascimento"
                 autoCapitalize="none"
-                keyboardType="phone-pad"
                 autoCorrect={false}
-                maxLength={10}
-                value={birthdate}
-                onChangeText={(birthdate) => setBirthDate(birthdate)}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
               />
+                )}
+                name='birthdate'
+              </Controller>
             </StepsContainer>
           </ProgressStep>
           <ProgressStep
@@ -153,32 +143,49 @@ const Register: React.FC = () => {
           >
             <StepsContainer>
               <TitleSectionSteps>Dados de Login</TitleSectionSteps>
-              <Input
+              <Controller>
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                <Input
                 placeholder="Digite seu e-mail"
                 autoCapitalize="none"
-                keyboardType="email-address"
                 autoCorrect={false}
-                value={email}
-                onChangeText={(email) => setEmail(email)}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
               />
-              <Input
+                )}
+                name='email'
+              </Controller>
+              <Controller>
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                <Input
                 placeholder="Digite sua senha"
                 autoCapitalize="none"
                 autoCorrect={false}
-                secureTextEntry={true}
-                value={password}
-                onChangeText={(password) => setPassword(password)}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
               />
-              <Input
-                placeholder="Confirmar sua senha"
+                )}
+                name='password'
+              </Controller>
+
+              <Controller>
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                <Input
+                placeholder="Confirme sua senha"
                 autoCapitalize="none"
                 autoCorrect={false}
-                secureTextEntry={true}
-                value={confirmPassword}
-                onChangeText={(confirmPassword) =>
-                  setConfirmPassword(confirmPassword)
-                }
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
               />
+                )}
+                name='confirmPassword'
+              </Controller>
             </StepsContainer>
           </ProgressStep>
           <ProgressStep
@@ -209,22 +216,35 @@ const Register: React.FC = () => {
           >
             <StepsContainer>
               <TitleSectionSteps>Dados Corporais</TitleSectionSteps>
-              <Input
-                placeholder="Digite sua altura"
-                keyboardType="numeric"
+              <Controller>
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                <Input
+                placeholder="Digite sua altura (cm)"
                 autoCapitalize="none"
                 autoCorrect={false}
-                value={height}
-                onChangeText={(height) => setHeight(height)}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
               />
-              <Input
-                placeholder="Digite seu peso"
-                keyboardType="numeric"
+                )}
+                name='height'
+              </Controller>
+
+              <Controller>
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                <Input
+                placeholder="Digite seu peso (kg)"
                 autoCapitalize="none"
                 autoCorrect={false}
-                value={weight}
-                onChangeText={(weight) => setWeight(weight)}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
               />
+                )}
+                name='weight'
+              </Controller>
             </StepsContainer>
           </ProgressStep>
         </ProgressSteps>
