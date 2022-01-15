@@ -1,8 +1,9 @@
 import styled from "styled-components/native";
 import { AntDesign } from "@expo/vector-icons";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import {RectButton} from 'react-native-gesture-handler';
 
-export const Module = styled.View`
+export const Module = styled(RectButton)`
   width: ${RFValue(136)}px;
   height: ${RFValue(136)}px;
   border-radius: ${({ theme }) => theme.borderRadius.md};

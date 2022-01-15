@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 import { useTheme } from "styled-components";
 import { AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Dashboard from "../screens/Dashboard";
+import Dashboard from "../screens/Dashboard/index";
 import NewFriend from "../screens/NewFriend";
 import Config from "../screens/Config";
 

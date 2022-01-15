@@ -1,6 +1,7 @@
 import React from "react";
 import { RiArrowRightLine } from "react-icons/ri";
-import { Text, View, SafeAreaView } from "react-native";
+import { Text, View, SafeAreaView, Button } from "react-native";
+import { useAuth } from "../../hooks/useAuth";
 import ModuleItem from "./components/Module";
 import {
   Container,
@@ -18,13 +19,19 @@ import {
 } from "./styles";
 
 const Dashboard: React.FC = () => {
+  const { signOut, user } = useAuth();
+
+  async function handleSignOut() {
+    signOut()
+  }
+
   return (
     <Container>
       <Header>
         <UserInfoContainer>
           <View>
             <WelcomeAgainMsg>Olá novamente 👋🏻</WelcomeAgainMsg>
-            <UserNameText>Marcos Gênesis</UserNameText>
+            <UserNameText>{user?.name}</UserNameText>
           </View>
           <UserAvatar
             source={{
@@ -64,6 +71,7 @@ const Dashboard: React.FC = () => {
           image={require("../../assets/healthLogo.png")}
         />
       </ModulesContainer>
+      <Button title="Sign Out" onPress={handleSignOut} />
     </Container>
   );
 };
