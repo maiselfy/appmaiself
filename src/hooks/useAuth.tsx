@@ -3,6 +3,8 @@ import React, { createContext, useContext, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 //import AsyncStorage from '@react-native-community/async-storage';
 
+import { parse } from "date-fns";
+
 import api from "../api/api";
 
 import * as auth from "../services/auth";
@@ -11,7 +13,7 @@ interface User {
   name: string;
   email: string;
   lastname: string;
-  birthdate: parse(birthdate, "ddMMyyyy", new Date());
+  birthdate: Date;
 }
 export interface RegisterData {
   name: string;
@@ -19,7 +21,6 @@ export interface RegisterData {
   birthdate: Date;
   email: string;
   password: string;
-  passwordConfirmation: string;
 }
 export interface LoginData {
   email: string;
@@ -30,7 +31,7 @@ interface AuthContext {
   signIn: () => Promise<void>;
   registerUser: () => Promise<void>;
   signOut: () => void;
-  loggedUser: LoggedUser | null;
+  user: User | null;
   loading: boolean;
 }
 interface AuthProviderProps {
@@ -39,7 +40,7 @@ interface AuthProviderProps {
 const AuthContext = createContext({} as AuthContext);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [User, setUser] = useState<User>(null);
+  const [user, setUser] = useState<User>(null);
 
   async function signIn({ email, password }: LoginData) {
 
@@ -93,15 +94,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
-  async function registerUser() {
+  async function registerUser({ email, password, birthdate, name, lastname}: RegisterData) {
     try {
       console.log("Entrei na chamada");
       const response = await api.post("api/user", {
         name,
         lastname,
         email,
+        birthdate: parse(birthdate, "ddMMyyyy", new Date()),
         password,
-        birthdate,
       });
 
       if (!response.data.message) {
@@ -136,7 +137,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   function signOut() {
-    setLoggedUser(null);
+    setUser(null);
   }
 
   return (

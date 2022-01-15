@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 //import { ToastAndroid } from "react-native";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { parse } from "date-fns";
 import { ProgressSteps, ProgressStep } from "react-native-progress-steps";
+import * as yup from "yup";
 import Input from "../../components/form/Input";
-import { useAuth } from "../../hooks/useAuth";
+import { RegisterData, useAuth } from "../../hooks/useAuth";
 import {
   Container,
   FormContainer,
@@ -12,26 +15,27 @@ import {
 } from "./styles";
 
 import api from "../../api/api";
-import { Controller } from "react-hook-form";
 
 const registerSchema = yup.object({
   name: yup.string().required(),
   lastname: yup.string().required(),
-  birthdate: yup.date().required(),
+  birthdate: yup.string().required(),
   email: yup.string().email().required(),
-  password: Yup.string().required('Password is required'),
-  passwordConfirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
+  password: yup.string().required('Password is required'),
+  passwordConfirmation: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
+  height: yup.number().required(),
+  weight: yup.number().required(),
 });
 
 const Register: React.FC = () => {
   const { control, handleSubmit } = useForm({
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(registerSchema),
   });
 
   const { registerUser, user } = useAuth();
 
-  async function handleRegister({ name, lastname, birthdate, email, password, passwordConfirmation }: RegisterData) {
-    registerUser();
+  async function handleRegister({ name, lastname, birthdate, email, password }: RegisterData) {
+    registerUser({name, lastname, birthdate, email, password});
   }
 
   return (
@@ -67,7 +71,7 @@ const Register: React.FC = () => {
           >
             <StepsContainer>
               <TitleSectionSteps>Dados Pessoais</TitleSectionSteps>
-              <Controller>
+              <Controller 
                 control={control}
                 render={({ field: { onChange, onBlur, value } }) => (
                 <Input
@@ -80,8 +84,8 @@ const Register: React.FC = () => {
               />
                 )}
                 name='name'
-              </Controller>
-              <Controller>
+              />
+              <Controller 
                 control={control}
                 render={({ field: { onChange, onBlur, value } }) => (
                 <Input
@@ -94,9 +98,8 @@ const Register: React.FC = () => {
               />
                 )}
                 name='lastname'
-              </Controller>
-
-              <Controller>
+              />
+              <Controller 
                 control={control}
                 render={({ field: { onChange, onBlur, value } }) => (
                 <Input
@@ -109,9 +112,10 @@ const Register: React.FC = () => {
               />
                 )}
                 name='birthdate'
-              </Controller>
+              />
             </StepsContainer>
           </ProgressStep>
+
           <ProgressStep
             label="Login"
             previousBtnTextStyle={{
@@ -143,7 +147,7 @@ const Register: React.FC = () => {
           >
             <StepsContainer>
               <TitleSectionSteps>Dados de Login</TitleSectionSteps>
-              <Controller>
+              <Controller
                 control={control}
                 render={({ field: { onChange, onBlur, value } }) => (
                 <Input
@@ -153,11 +157,11 @@ const Register: React.FC = () => {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-              />
+                />
                 )}
                 name='email'
-              </Controller>
-              <Controller>
+              />
+              <Controller
                 control={control}
                 render={({ field: { onChange, onBlur, value } }) => (
                 <Input
@@ -170,9 +174,8 @@ const Register: React.FC = () => {
               />
                 )}
                 name='password'
-              </Controller>
-
-              <Controller>
+              />
+              <Controller 
                 control={control}
                 render={({ field: { onChange, onBlur, value } }) => (
                 <Input
@@ -184,10 +187,11 @@ const Register: React.FC = () => {
                 value={value}
               />
                 )}
-                name='confirmPassword'
-              </Controller>
+                name='passwordConfirmation'
+              />
             </StepsContainer>
           </ProgressStep>
+
           <ProgressStep
             label="Corporal"
             previousBtnTextStyle={{
@@ -212,11 +216,11 @@ const Register: React.FC = () => {
             }}
             previousBtnText="Anterior"
             finishBtnText="Cadastrar"
-            onSubmit={handleRegister}
+            onSubmit={handleSubmit(handleRegister)}
           >
             <StepsContainer>
               <TitleSectionSteps>Dados Corporais</TitleSectionSteps>
-              <Controller>
+              <Controller
                 control={control}
                 render={({ field: { onChange, onBlur, value } }) => (
                 <Input
@@ -229,9 +233,9 @@ const Register: React.FC = () => {
               />
                 )}
                 name='height'
-              </Controller>
+              />
 
-              <Controller>
+              <Controller
                 control={control}
                 render={({ field: { onChange, onBlur, value } }) => (
                 <Input
@@ -244,9 +248,11 @@ const Register: React.FC = () => {
               />
                 )}
                 name='weight'
-              </Controller>
+              />
+              
             </StepsContainer>
           </ProgressStep>
+
         </ProgressSteps>
       </FormContainer>
     </Container>
