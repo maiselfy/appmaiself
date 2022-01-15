@@ -11,12 +11,23 @@ import * as auth from "../services/auth";
 interface User {
   name: string;
   email: string;
+  lastname: string;
+  birthdate: parse(birthdate, "ddMMyyyy", new Date());
+}
+export interface RegisterData {
+  name: string;
+  lastname: string;
+  birthdate: Date;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
 }
 interface AuthContext {
   signed: boolean;
   signIn: () => Promise<void>;
+  registerUser: () => Promise<void>;
   signOut: () => void;
-  user: User | null;
+  loggedUser: LoggedUser | null;
   loading: boolean;
 }
 interface AuthProviderProps {
@@ -25,7 +36,7 @@ interface AuthProviderProps {
 const AuthContext = createContext({} as AuthContext);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User>(null);
+  const [User, setUser] = useState<User>(null);
 
   async function signIn() {
     //const response = await auth.signIn();
@@ -88,7 +99,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         lastname,
         email,
         password,
-        birthdate: parse(birthdate, "ddMMyyyy", new Date()),
+        birthdate,
       });
 
       if (!response.data.message) {
@@ -123,7 +134,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   function signOut() {
-    setUser(null);
+    setLoggedUser(null);
   }
 
   return (
