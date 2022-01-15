@@ -7,7 +7,7 @@ import { Container } from "./styles";
 const Input: React.FC<TextInputProps> = ({ ...rest }) => {
   const theme = useTheme();
   return (
-    <Container placeholderTextColor={theme.colors.textSecondary} {...rest}/>
+    <Container placeholderTextColor={theme.colors.textSecondary} {...rest} />
   );
 };
 

@@ -6,10 +6,10 @@ import { AuthRoutes } from "./auth.routes";
 import { useAuth } from "../hooks/useAuth";
 
 const Routes: React.FC = () => {
-  const { user } = useAuth();
+  const { signed } = useAuth();
   return (
     <NavigationContainer>
-      {user ? <AppRoutes /> : <AppRoutes />}
+      {signed ? <AppRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   );
 };

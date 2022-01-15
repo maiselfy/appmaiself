@@ -7,9 +7,10 @@ import {
   Poppins_500Medium,
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
-import Routes  from "./src/routes";
+import Routes from "./src/routes";
 import { AuthProvider } from "./src/hooks/useAuth";
 import theme from "./src/global/styles/theme";
+import 'react-native-gesture-handler';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
