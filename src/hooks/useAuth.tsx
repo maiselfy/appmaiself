@@ -5,12 +5,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import api from "../api/api";
 
-
 import * as auth from "../services/auth";
 
 interface User {
   name: string;
   email: string;
+}
+export interface LoginData {
+  email: string;
+  password: string;
 }
 interface AuthContext {
   signed: boolean;
@@ -27,14 +30,14 @@ const AuthContext = createContext({} as AuthContext);
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>(null);
 
-  async function signIn() {
-    //const response = await auth.signIn();
+  async function signIn({ email, password }: LoginData) {
+
     try {
       const response = await api.post("api/session", {
-        email: 'italolima534@gmail.com',
-        password: '0404',
+        email: email,
+        password: password,
       });
-  
+      
       if (!response.data.message) {
         console.log("RESPONSE => ", response.data);
         /*
@@ -45,19 +48,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
         );
         */
         const token = response.data;
-        
-        const userResponse = await api.get('/api/user/me', {
-          headers: {Authorization: `Bearer ${token}`}
-        })
-        
+
+        const userResponse = await api.get("/api/user/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
         setUser({
           email: userResponse.data.email,
-          name: userResponse.data.name
+          name: userResponse.data.name,
         });
-    
+
         await AsyncStorage.setItem("user", JSON.stringify(user));
         await AsyncStorage.setItem("token", token);
-
       } else {
         console.log("ERROR RESPONSE => ", response.data);
         /*
@@ -69,20 +71,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
         */
       }
     } catch (error) {
-    console.log("ERROR => ", error);
-    /*
+      console.log("ERROR => ", error);
+      /*
     ToastAndroid.showWithGravity(
       "Error interno no servidor! Por favor, tente novamente!",
       ToastAndroid.SHORT,
       ToastAndroid.CENTER
     );
     */
-  }
+    }
   }
 
   async function registerUser() {
     try {
-      console.log('Entrei na chamada')
+      console.log("Entrei na chamada");
       const response = await api.post("api/user", {
         name,
         lastname,
