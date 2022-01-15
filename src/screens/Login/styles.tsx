@@ -95,3 +95,5 @@ export const IconGoogle = styled.Image`
   width: ${RFValue(70)}px;
   height: ${RFValue(50)}px;
 `;
+
+

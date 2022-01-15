@@ -130,7 +130,11 @@ const Register: React.FC = () => {
               width: 200,
               textAlign: "center",
             }}
-            previousBtnStyle={{ padding: 15 }}
+            previousBtnStyle={{ 
+              padding: 15, 
+              borderRadius: 10,
+              backgroundColor: "#fff",
+            }}
             nextBtnTextStyle={{
               color: "#FFFFFF",
               fontSize: 18,

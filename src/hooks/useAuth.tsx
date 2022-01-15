@@ -80,12 +80,55 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
   }
 
+  async function registerUser() {
+    try {
+      console.log('Entrei na chamada')
+      const response = await api.post("api/user", {
+        name,
+        lastname,
+        email,
+        password,
+        birthdate: parse(birthdate, "ddMMyyyy", new Date()),
+      });
+
+      if (!response.data.message) {
+        console.log("RESPONSE => ", response.data);
+        /*
+        ToastAndroid.showWithGravity(
+          "Novo usuário cadastrado com sucesso!!!",
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER
+        );
+        */
+      } else {
+        console.log("RESPONSE ERROR=> ", response.data);
+        /*
+        ToastAndroid.showWithGravity(
+          `${response.data.message}`,
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER
+        );
+        */
+      }
+    } catch (error) {
+      console.log("ERROR => ", error);
+      /*
+      ToastAndroid.showWithGravity(
+        "Error interno no servidor! Por favor, tente novamente!",
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER
+      );
+      */
+    }
+  }
+
   function signOut() {
     setUser(null);
   }
+
   return (
     <AuthContext.Provider
-      value={{ signOut, signIn, user, signed: !!user }}
+      value={{ signOut, signIn, registerUser, user, signed: !!user }}
     >
       {children}
     </AuthContext.Provider>
