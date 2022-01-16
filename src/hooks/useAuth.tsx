@@ -11,7 +11,7 @@ interface User {
   name: string;
   email: string;
   lastname: string;
-  birthdate: parse(birthdate, "ddMMyyyy", new Date());
+  birthdate: string;
 }
 export interface RegisterData {
   name: string;
@@ -39,7 +39,7 @@ interface AuthProviderProps {
 const AuthContext = createContext({} as AuthContext);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [User, setUser] = useState<User>(null);
+  const [user, setUser] = useState<User>(null);
 
   async function signIn({ email, password }: LoginData) {
 
