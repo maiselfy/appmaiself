@@ -2,7 +2,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  width: ${RFPercentage(45)}px;
+  width: ${RFPercentage(48)}px;
   background: ${({ theme }) => theme.colors.shape};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   margin-bottom: 10px;
@@ -34,14 +34,27 @@ export const Frequency = styled.View`
   justify-content: space-between;
   align-self: center;
   margin-top: 10px;
+  margin-bottom: 10px;
 `;
-export const FrequencyCard = styled.View`
+export const FrequencyDay = styled.View`
   width: ${RFValue(30)}px;
   height: ${RFValue(30)}px;
-  background: ${({ theme }) => theme.colors.success};
+  background: ${({ theme, checked }) =>
+    checked ? theme.colors.success : theme.colors.attentionLight};
+  border-width:  ${({ checked }) => (checked ? "0px" : "1px")}
+  border-color:  ${({ theme, checked }) =>
+    checked ? "transparent" : theme.colors.attention}
   border-radius: ${({ theme }) => theme.borderRadius.md};
   justify-content: center;
   align-items: center;
+`;
+export const FrequencyCard = styled.View`
+  justify-content: center;
+  align-items: center;
+`;
+export const FrequencyWeekDay = styled.Text`
+  color: ${({ theme }) => theme.colors.text};
+  margin-bottom: 6px;
 `;
 export const FrequencyCardText = styled.Text`
   color: ${({ theme }) => theme.colors.text};
@@ -62,7 +75,7 @@ export const Star = styled.Image`
 export const Description = styled.Text`
   color: ${({ theme }) => theme.colors.textSecondary};
   padding-left: 10px;
-  margin-top:${RFValue(-4)}px;
+  margin-top: ${RFValue(-4)}px;
 `;
 export const StabilityText = styled.Text`
   color: ${({ theme }) => theme.colors.text};

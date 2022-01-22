@@ -1,5 +1,8 @@
-import React from "react";
+import { AsyncStorage } from "react-native";
+import React, { useEffect, useState } from "react";
 import { Image, Text, View } from "react-native";
+import api from "../../api/api";
+import { useAuth } from "../../hooks/useAuth";
 import Habit from "./components/Habit";
 
 import {
@@ -12,34 +15,38 @@ import {
   NewHabitButtonText,
 } from "./styles";
 
+interface Habit {
+  id: string;
+  user_id: string;
+  name: string;
+  description: string;
+  objective: string;
+  color: string;
+  buddy_id: string;
+  currentWeekFrequency: {
+    date: string;
+    checked: boolean;
+  }[];
+}
+
 const Habits: React.FC = () => {
-  const data = [
-    {
-      title: "correr todo santo dia",
-      description: "Correr todo santo dia",
-      star: require("../../assets/stars/galaxy.png"),
-      stability: "34%",
-    },
-    {
-      title: "correr todo santo dia",
-      description: "Correr todo santo dia",
-      star: require("../../assets/stars/galaxy.png"),
-      stability: "34%",
-    },
-    {
-      title: "correr todo santo dia",
-      description: "Correr todo santo dia",
-      star: require("../../assets/stars/galaxy.png"),
-      stability: "34%",
-    },
-    {
-      title:
-        "correr todo santo dia meu deus do ceu nem que me paguem eu continuo com isso aqui",
-      description: "Correr todo santo dia",
-      star: require("../../assets/stars/galaxy.png"),
-      stability: "34%",
-    },
-  ];
+  const { user } = useAuth();
+  const [habits, setHabits] = useState<Habit[]>([]);
+
+  useEffect(() => {
+    async function getHabits() {
+      if (user) {
+        const token = await AsyncStorage.getItem("token");
+        api
+          .get(`api/habit/list/${user.id}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          .then((response) => setHabits(response.data));
+      }
+    }
+    getHabits();
+  }, []);
+
   return (
     <Container>
       <Header>
@@ -47,8 +54,8 @@ const Habits: React.FC = () => {
         <Logo source={require("../../assets/habitsLogo.png")} />
       </Header>
       <HabitList
-        data={data}
-        renderItem={(item) => <Habit data={item.item} />}
+        data={habits}
+        renderItem={(item) => <Habit data={item.item} key={item}/>}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 10 }}
       />

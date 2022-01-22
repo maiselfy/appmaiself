@@ -8,6 +8,7 @@ import api from "../api/api";
 import * as auth from "../services/auth";
 
 interface User {
+  id:string;
   name: string;
   email: string;
   lastname: string;
@@ -30,7 +31,7 @@ interface AuthContext {
   signIn: () => Promise<void>;
   registerUser: () => Promise<void>;
   signOut: () => void;
-  loggedUser: LoggedUser | null;
+  user: User | null;
   loading: boolean;
 }
 interface AuthProviderProps {
@@ -67,6 +68,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setUser({
           email: userResponse.data.email,
           name: userResponse.data.name,
+          id: userResponse.data.id,
         });
 
         await AsyncStorage.setItem("user", JSON.stringify(user));

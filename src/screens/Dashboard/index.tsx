@@ -18,7 +18,7 @@ import {
   BannerInfo,
 } from "./styles";
 
-const Dashboard: React.FC = () => {
+const Dashboard: React.FC = ({navigation}) => {
   const { signOut, user } = useAuth();
 
   async function handleSignOut() {
