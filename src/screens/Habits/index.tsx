@@ -13,6 +13,7 @@ import {
   HabitList,
   NewHabitButton,
   NewHabitButtonText,
+  AllHabitsTxt,TitleContainer
 } from "./styles";
 
 interface Habit {
@@ -53,15 +54,18 @@ const Habits: React.FC = () => {
         <Title>Hábitos</Title>
         <Logo source={require("../../assets/habitsLogo.png")} />
       </Header>
-      <HabitList
-        data={habits}
-        renderItem={(item) => <Habit data={item.item} key={item}/>}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 10 }}
-      />
       <NewHabitButton>
         <NewHabitButtonText>Novo Hábito</NewHabitButtonText>
       </NewHabitButton>
+      <TitleContainer>
+        <AllHabitsTxt>Todos os Hábitos</AllHabitsTxt>
+      </TitleContainer>
+      <HabitList
+        data={habits}
+        renderItem={(item) => <Habit data={item.item} key={item} />}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 10 }}
+      />
     </Container>
   );
 };

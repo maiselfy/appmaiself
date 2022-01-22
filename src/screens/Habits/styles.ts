@@ -9,11 +9,21 @@ export const Container = styled.View`
 `;
 export const Header = styled.SafeAreaView`
   width: 100%;
-  height: ${RFPercentage(20)}px;
+  height: ${RFPercentage(25)}px;
   background: ${({ theme }) => theme.colors.shape};
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+`;
+export const AllHabitsTxt = styled.Text`
+  color: ${({ theme }) => theme.colors.text}
+  font-size: ${RFValue(16)}px;
+  font-family: ${({ theme }) => theme.fonts.bold}
+`;
+export const TitleContainer = styled.View`
+  justify-content: flex-start;
+  width: ${RFPercentage(48)}px;
+  margin-top: ${RFValue(24)}px;
 `;
 export const Title = styled.Text`
   font-size: ${RFValue(20)}px;
@@ -33,6 +43,7 @@ export const HabitList = styled.FlatList`
 export const NewHabitButton = styled(RectButton)`
   height: ${RFValue(50)}px;
   width: ${RFPercentage(45)}px;
+  margin-top: -30px;
   background: ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   align-items: center;

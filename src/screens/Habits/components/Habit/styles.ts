@@ -11,7 +11,7 @@ export const Container = styled.View`
 export const Color = styled.View`
   width: 12px;
   height: 12px;
-  background: ${({ theme }) => theme.colors.primary};
+  background: ${({ color }) => color};
   border-radius: 50px;
   margin-right: 10px;
   align-self: center;

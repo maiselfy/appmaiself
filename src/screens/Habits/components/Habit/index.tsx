@@ -40,7 +40,7 @@ const Habit: React.FC<HabitProps> = ({ data }) => {
     <Container>
       <Header>
         <TitleContainer>
-          <Color />
+          <Color color={data.color}/>
           <HabitTitle numberOfLines={2}>{data.name}</HabitTitle>
         </TitleContainer>
         <StarContainer>
