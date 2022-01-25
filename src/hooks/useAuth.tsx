@@ -51,7 +51,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
       
       if (!response.data.message) {
-        console.log("RESPONSE => ", response.data);
+        // console.log("RESPONSE => ", response.data);
         /*
         ToastAndroid.showWithGravity(
           "Usuário logado com sucesso!!!",
@@ -74,7 +74,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         await AsyncStorage.setItem("user", JSON.stringify(user));
         await AsyncStorage.setItem("token", token);
       } else {
-        console.log("ERROR RESPONSE => ", response.data);
+        // console.log("ERROR RESPONSE => ", response.data);
         /*
         ToastAndroid.showWithGravity(
           `${response.data.message}`,
@@ -84,7 +84,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         */
       }
     } catch (error) {
-      console.log("ERROR => ", error);
+      // console.log("ERROR => ", error);
       /*
     ToastAndroid.showWithGravity(
       "Error interno no servidor! Por favor, tente novamente!",
@@ -97,7 +97,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function registerUser() {
     try {
-      console.log("Entrei na chamada");
+      // console.log("Entrei na chamada");
       const response = await api.post("api/user", {
         name,
         lastname,
@@ -107,7 +107,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
 
       if (!response.data.message) {
-        console.log("RESPONSE => ", response.data);
+        // console.log("RESPONSE => ", response.data);
         /*
         ToastAndroid.showWithGravity(
           "Novo usuário cadastrado com sucesso!!!",
@@ -116,7 +116,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         );
         */
       } else {
-        console.log("RESPONSE ERROR=> ", response.data);
+        // console.log("RESPONSE ERROR=> ", response.data);
         /*
         ToastAndroid.showWithGravity(
           `${response.data.message}`,
@@ -126,7 +126,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         */
       }
     } catch (error) {
-      console.log("ERROR => ", error);
+      // console.log("ERROR => ", error);
       /*
       ToastAndroid.showWithGravity(
         "Error interno no servidor! Por favor, tente novamente!",

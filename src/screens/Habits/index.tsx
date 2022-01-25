@@ -13,10 +13,15 @@ import {
   HabitList,
   NewHabitButton,
   NewHabitButtonText,
-  AllHabitsTxt,TitleContainer
+  AllHabitsTxt,
+  TitleContainer,
+  HabitsStatsContainer,
+  StatItem,
+  StatItemTxt,
+  StatItemLabel,
 } from "./styles";
 
-interface Habit {
+export interface Habit {
   id: string;
   user_id: string;
   name: string;
@@ -24,6 +29,10 @@ interface Habit {
   objective: string;
   color: string;
   buddy_id: string;
+  stability: {
+    avg: number;
+    stabilityChartData: number[];
+  };
   currentWeekFrequency: {
     date: string;
     checked: boolean;
@@ -33,6 +42,7 @@ interface Habit {
 const Habits: React.FC = () => {
   const { user } = useAuth();
   const [habits, setHabits] = useState<Habit[]>([]);
+  const [stabilityAvg, setStabilityAvg] = useState(0);
 
   useEffect(() => {
     async function getHabits() {
@@ -57,6 +67,12 @@ const Habits: React.FC = () => {
       <NewHabitButton>
         <NewHabitButtonText>Novo Hábito</NewHabitButtonText>
       </NewHabitButton>
+      {/* <HabitsStatsContainer>
+        <StatItem>
+          <StatItemLabel>TOTAL</StatItemLabel>
+          <StatItemTxt>{habits.length}</StatItemTxt>
+        </StatItem>
+      </HabitsStatsContainer> */}
       <TitleContainer>
         <AllHabitsTxt>Todos os Hábitos</AllHabitsTxt>
       </TitleContainer>

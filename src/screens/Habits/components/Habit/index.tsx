@@ -18,23 +18,14 @@ import {
   StabilityText,
   FrequencyDay,FrequencyWeekDay
 } from "./styles";
+import { Habit as HabitData } from "../..";
 
 interface HabitProps {
-  data: {
-    name: string;
-    color: string;
-    description: string;
-    star: ImageSourcePropType;
-    stability: string;
-    currentWeekFrequency: {
-      checked: boolean;
-      date: Date;
-    }[];
-  };
+  data: HabitData;
 }
 
 const Habit: React.FC<HabitProps> = ({ data }) => {
-  console.log(data);
+  // console.log(data);
 
   return (
     <Container>
@@ -45,13 +36,13 @@ const Habit: React.FC<HabitProps> = ({ data }) => {
         </TitleContainer>
         <StarContainer>
           {/* <Star source={data.star} /> */}
-          {/* <StabilityText>{data.stability}</StabilityText> */}
+          <StabilityText>{data.stability.avg}%</StabilityText>
         </StarContainer>
       </Header>
       <Description>{data.description}</Description>
       <Frequency>
         {data.currentWeekFrequency.map((i) => (
-          <FrequencyCard>
+          <FrequencyCard key={i.date}>
             <FrequencyWeekDay>{format(addDays(new Date(i.date), 1), "EEEEEE", { locale: ptBr })}</FrequencyWeekDay>
             <FrequencyDay checked={i.checked}>
               <FrequencyCardText>

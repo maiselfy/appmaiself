@@ -78,7 +78,7 @@ export const Description = styled.Text`
   margin-top: ${RFValue(-4)}px;
 `;
 export const StabilityText = styled.Text`
-  color: ${({ theme }) => theme.colors.text};
-  font-size: ${RFValue(16)}px;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  font-size: ${RFValue(12)}px;
   margin-left: 10px;
 `;

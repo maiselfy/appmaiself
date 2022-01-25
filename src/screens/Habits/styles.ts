@@ -54,3 +54,23 @@ export const NewHabitButtonText = styled.Text`
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.bold};
 `;
+
+export const HabitsStatsContainer = styled.View`
+  margin-top: 30px;
+  width: ${RFPercentage(48)}px;
+  flex-direction: row;
+  background-color: ${({ theme }) => theme.colors.shape};
+  padding: 10px;
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+`;
+export const StatItem = styled.View`
+  align-items: center;
+`;
+export const StatItemLabel = styled.Text`
+  color: ${({ theme }) => theme.colors.textSecondary};
+  font-size: ${RFValue(8)}px;
+`;
+export const StatItemTxt = styled.Text`
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${RFValue(16)}px;
+`;
