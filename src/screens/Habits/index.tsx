@@ -39,7 +39,7 @@ export interface Habit {
   }[];
 }
 
-const Habits: React.FC = () => {
+const Habits: React.FC = ({ navigation }) => {
   const { user } = useAuth();
   const [habits, setHabits] = useState<Habit[]>([]);
   const [stabilityAvg, setStabilityAvg] = useState(0);
@@ -64,7 +64,7 @@ const Habits: React.FC = () => {
         <Title>Hábitos</Title>
         <Logo source={require("../../assets/habitsLogo.png")} />
       </Header>
-      <NewHabitButton>
+      <NewHabitButton onPress={() => navigation.navigate("NewHabit")}>
         <NewHabitButtonText>Novo Hábito</NewHabitButtonText>
       </NewHabitButton>
       {/* <HabitsStatsContainer>

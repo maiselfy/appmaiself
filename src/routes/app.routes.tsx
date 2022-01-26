@@ -11,6 +11,8 @@ import { DashboardRoutes } from "./dashboard.routes";
 import Habits from "../screens/Habits";
 import Finances from '../screens/Finances'
 import NewFinance from "../screens/NewFinance"
+import Habit from "../screens/Habit";
+import NewHabit from "../screens/NewHabit";
 
 const { Screen, Navigator } = createBottomTabNavigator();
 
@@ -69,6 +71,8 @@ const DashboardStack: React.FC = () => {
       <Stack.Screen name='Habits' component={Habits} />
       <Stack.Screen name='Finances' component={Finances} />
       <Stack.Screen name='NewFinance' component={NewFinance} />
+      <Stack.Screen name='Habit' component={Habit} />
+      <Stack.Screen name='NewHabit' component={NewHabit} />
     </Stack.Navigator>
   );
 };
