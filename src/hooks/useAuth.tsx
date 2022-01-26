@@ -13,6 +13,7 @@ interface User {
   email: string;
   lastname: string;
   birthdate: string;
+  username: string;
 }
 export interface RegisterData {
   name: string;
@@ -20,6 +21,7 @@ export interface RegisterData {
   birthdate: Date;
   email: string;
   password: string;
+  username: string;
   passwordConfirmation: string;
 }
 export interface LoginData {
@@ -104,6 +106,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         email,
         password,
         birthdate,
+        username,
       });
 
       if (!response.data.message) {
