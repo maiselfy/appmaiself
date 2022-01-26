@@ -35,7 +35,7 @@ const Dashboard: React.FC = ({navigation}) => {
           </View>
           <UserAvatar
             source={{
-              uri: "https://avatars.githubusercontent.com/marcosgenesis",
+              uri: `https://avatars.githubusercontent.com/${user?.username}`,
             }}
           />
         </UserInfoContainer>
@@ -66,6 +66,7 @@ const Dashboard: React.FC = ({navigation}) => {
           title='Finanças'
           description='Ver suas finanças'
           image={require("../../assets/financesLogo.png")}
+          onPress={() => navigation.navigate('Finances')}
         />
         <ModuleItem
           title='Saúde'

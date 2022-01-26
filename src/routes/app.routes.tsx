@@ -9,6 +9,8 @@ import NewFriend from "../screens/NewFriend";
 import Config from "../screens/Config";
 import { DashboardRoutes } from "./dashboard.routes";
 import Habits from "../screens/Habits";
+import Finances from '../screens/Finances'
+import NewFinance from "../screens/NewFinance"
 
 const { Screen, Navigator } = createBottomTabNavigator();
 
@@ -65,6 +67,8 @@ const DashboardStack: React.FC = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Home' component={Dashboard} />
       <Stack.Screen name='Habits' component={Habits} />
+      <Stack.Screen name='Finances' component={Finances} />
+      <Stack.Screen name='NewFinance' component={NewFinance} />
     </Stack.Navigator>
   );
 };
