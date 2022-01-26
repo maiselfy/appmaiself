@@ -64,7 +64,7 @@ const Habits: React.FC = ({ navigation }) => {
         <Title>Hábitos</Title>
         <Logo source={require("../../assets/habitsLogo.png")} />
       </Header>
-      <NewHabitButton>
+      <NewHabitButton onPress={() => navigation.navigate("NewHabit")}>
         <NewHabitButtonText>Novo Hábito</NewHabitButtonText>
       </NewHabitButton>
       {/* <HabitsStatsContainer>
