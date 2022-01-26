@@ -31,10 +31,14 @@ const Habit: React.FC<HabitProps> = ({ data }) => {
   const navigation = useContext(NavigationContext);
 
   return (
-    <Container onPress={() => navigation.navigate("Habit")}>
+    <Container
+      onPress={() => {
+        navigation.navigate("Habit", { data });
+      }}
+    >
       <Header>
         <TitleContainer>
-          <Color color={data.color} /> 
+          <Color color={data.color} />
           <HabitTitle numberOfLines={2}>{data.name}</HabitTitle>
         </TitleContainer>
         <StarContainer>

@@ -31,6 +31,7 @@ export const HabitTitle = styled.Text`
 `;
 export const HabitDescription = styled.Text`
   color: ${({ theme }) => theme.colors.textSecondary};
+
 `;
 export const StabilityContainer = styled.View`
   flex-direction: row;

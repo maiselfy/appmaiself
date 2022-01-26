@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 import { Header } from "../Habits/styles";
 import { RiBarChartLine } from "react-icons/ri";
@@ -29,9 +29,16 @@ import {
 import { ChartConfig } from "react-native-chart-kit/dist/HelperTypes";
 import { useTheme } from "styled-components";
 import { LineChartProps } from "react-native-chart-kit/dist/line-chart/LineChart";
+import Calendar from "../../components/calendar";
+import { useRoute } from "@react-navigation/native";
 
 const Habit: React.FC = ({ navigation }) => {
+  const route = useRoute();
+  const habitData = route.params.data;
+
+  const [shouldReload, setShouldReload] = useState(false);
   const theme = useTheme();
+  
   const chartConfig: LineChartProps = {
     backgroundGradientFrom: theme.colors.default,
     backgroundGradientFromOpacity: 0,
@@ -47,25 +54,26 @@ const Habit: React.FC = ({ navigation }) => {
   const data = {
     datasets: [
       {
-        data: [4, 8, 6, 9, 3, 5, 3],
+        data: habitData.stability.stabilityChartData,
         color: () => theme.colors.success, // optional
         strokeWidth: 2,
         // optional
       },
     ],
   };
+
   return (
     <Container>
       <HabitHeader>
         <HabitHeaderInfo>
-          <HabitTitle>Correr todos os dias</HabitTitle>
-          <HabitDescription>tenho que correr nessa porra</HabitDescription>
+          <HabitTitle>{habitData.name}</HabitTitle>
+          <HabitDescription numberOfLines={1}>{habitData.description}</HabitDescription>
         </HabitHeaderInfo>
         <StabilityContainer>
           <StabilityIcon name='bar-chart' size={32} />
           <View>
             <StabilityLabel>ESTABILIDADE</StabilityLabel>
-            <StabilityText>21%</StabilityText>
+            <StabilityText>{habitData.stability.avg}%</StabilityText>
           </View>
           <LineChart
             data={data}
@@ -98,6 +106,11 @@ const Habit: React.FC = ({ navigation }) => {
           </NextStarDescription>
         </StarInfo>
       </StarContainer>
+      <Calendar
+        habitId={habitData.id}
+        shouldReload={shouldReload}
+        setShouldReload={setShouldReload}
+      />
     </Container>
   );
 };
