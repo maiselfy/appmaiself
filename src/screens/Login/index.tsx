@@ -18,6 +18,8 @@ import {
   RegisterMaiselfText,
   LoginGoogleBtn,
   IconGoogle,
+  RegisterButtonText,
+  RegisterBtn,
 } from "./styles";
 
 import { AsyncStorage, Button, StatusBar } from "react-native";
@@ -31,7 +33,7 @@ const loginSchema = yup.object({
   password: yup.string().required(),
 });
 
-const Login: React.FC = () => {
+const Login: React.FC = ({navigation}) => {
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(loginSchema),
   });
@@ -87,14 +89,10 @@ const Login: React.FC = () => {
             {" "}
             Ainda não conhece a Maiself ? 🤔
           </DiscoveryMaiselfText>
-          <RegisterMaiselfText>
-            Clique aqui para conhecer e mudar de vida! 🚀
-          </RegisterMaiselfText>
         </DiscoveryMaiself>
-        <LoginGoogleBtn>
-          <IconGoogle source={require("../../assets/google.png")} />
-          <LoginButtonText>Entrar com o Google</LoginButtonText>
-        </LoginGoogleBtn>
+        <RegisterBtn onPress={() => navigation.navigate('Register')}>
+            <RegisterButtonText>Conheça e mude sua vida! 🚀</RegisterButtonText>
+        </RegisterBtn>
       </FormContainer>
     </Container>
   );

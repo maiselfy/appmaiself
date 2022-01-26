@@ -28,21 +28,29 @@ export const LoginBtn = styled(RectButton)`
   margin-top: ${RFPercentage(3)}px;
 `;
 
-export const LoginGoogleBtn = styled(RectButton)`
+export const RegisterBtn = styled(RectButton)`
   height: ${RFValue(50)}px;
-  width: ${RFPercentage(40)}px;
-  background: ${({ theme }) => theme.colors.textSecondary};
+  background: ${({ theme }) => theme.colors.text};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   align-items: center;
   align-self: center;
   flex-direction: row;
-  margin-top: ${RFPercentage(5)}px;
+  margin-top: ${RFPercentage(-3)}px;
 `;
 
 export const LoginButtonText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.bold};
   color: ${({ theme }) => theme.colors.text};
   font-size: ${RFValue(16)}px;
+`;
+
+export const RegisterButtonText = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.bold};
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: ${RFValue(14)}px;
+  align-items: center;
+  margin-left: 17;
+  margin-right: 17;
 `;
 
 export const LoginGoogleText = styled.Text`

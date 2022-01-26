@@ -18,7 +18,7 @@ import {
   BannerInfo,
 } from "./styles";
 
-const Dashboard: React.FC = () => {
+const Dashboard: React.FC = ({navigation}) => {
   const { signOut, user } = useAuth();
 
   async function handleSignOut() {
@@ -35,7 +35,7 @@ const Dashboard: React.FC = () => {
           </View>
           <UserAvatar
             source={{
-              uri: "https://avatars.githubusercontent.com/marcosgenesis",
+              uri: `https://avatars.githubusercontent.com/${user?.username}`,
             }}
           />
         </UserInfoContainer>
@@ -54,6 +54,8 @@ const Dashboard: React.FC = () => {
           title='Hábitos'
           description='Ver seus hábitos'
           image={require("../../assets/habitsLogo.png")}
+          onPress={() => navigation.navigate('Habits')}
+
         />
         <ModuleItem
           title='Tarefas'
@@ -64,6 +66,7 @@ const Dashboard: React.FC = () => {
           title='Finanças'
           description='Ver suas finanças'
           image={require("../../assets/financesLogo.png")}
+          onPress={() => navigation.navigate('Finances')}
         />
         <ModuleItem
           title='Saúde'

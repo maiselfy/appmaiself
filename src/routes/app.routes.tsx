@@ -3,9 +3,16 @@ import { Platform } from "react-native";
 import { useTheme } from "styled-components";
 import { AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Dashboard from "../screens/Dashboard/index";
+import { createStackNavigator } from "@react-navigation/stack";
+import Dashboard from "../screens/Dashboard";
 import NewFriend from "../screens/NewFriend";
 import Config from "../screens/Config";
+import { DashboardRoutes } from "./dashboard.routes";
+import Habits from "../screens/Habits";
+import Finances from '../screens/Finances'
+import NewFinance from "../screens/NewFinance"
+import Habit from "../screens/Habit";
+import NewHabit from "../screens/NewHabit";
 
 const { Screen, Navigator } = createBottomTabNavigator();
 
@@ -28,7 +35,7 @@ export function AppRoutes() {
     >
       <Screen
         name='Listagem'
-        component={Dashboard}
+        component={DashboardStack}
         options={{
           tabBarIcon: ({ size, color }) => (
             <AntDesign name='home' size={size} color={color} />
@@ -56,3 +63,16 @@ export function AppRoutes() {
     </Navigator>
   );
 }
+const Stack = createStackNavigator();
+const DashboardStack: React.FC = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name='Home' component={Dashboard} />
+      <Stack.Screen name='Habits' component={Habits} />
+      <Stack.Screen name='Finances' component={Finances} />
+      <Stack.Screen name='NewFinance' component={NewFinance} />
+      <Stack.Screen name='Habit' component={Habit} />
+      <Stack.Screen name='NewHabit' component={NewHabit} />
+    </Stack.Navigator>
+  );
+};

@@ -15,7 +15,8 @@ export default {
     text: "#fff",
     textSecondary: "#969CB2",
 
-    background: "#242627",
+    background: "#151718",
+    default: "#242627",
   },
   borderRadius: {
     md: "8px",

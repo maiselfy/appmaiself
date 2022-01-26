@@ -8,10 +8,12 @@ import api from "../api/api";
 import * as auth from "../services/auth";
 
 interface User {
+  id:string;
   name: string;
   email: string;
   lastname: string;
-  birthdate: parse(birthdate, "ddMMyyyy", new Date());
+  birthdate: string;
+  username: string;
 }
 export interface RegisterData {
   name: string;
@@ -19,6 +21,7 @@ export interface RegisterData {
   birthdate: Date;
   email: string;
   password: string;
+  username: string;
   passwordConfirmation: string;
 }
 export interface LoginData {
@@ -30,7 +33,7 @@ interface AuthContext {
   signIn: () => Promise<void>;
   registerUser: () => Promise<void>;
   signOut: () => void;
-  loggedUser: LoggedUser | null;
+  user: User | null;
   loading: boolean;
 }
 interface AuthProviderProps {
@@ -39,7 +42,7 @@ interface AuthProviderProps {
 const AuthContext = createContext({} as AuthContext);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [User, setUser] = useState<User>(null);
+  const [user, setUser] = useState<User>(null);
 
   async function signIn({ email, password }: LoginData) {
 
@@ -50,7 +53,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
       
       if (!response.data.message) {
-        console.log("RESPONSE => ", response.data);
+        // console.log("RESPONSE => ", response.data);
         /*
         ToastAndroid.showWithGravity(
           "Usuário logado com sucesso!!!",
@@ -67,12 +70,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setUser({
           email: userResponse.data.email,
           name: userResponse.data.name,
+          id: userResponse.data.id,
         });
 
         await AsyncStorage.setItem("user", JSON.stringify(user));
         await AsyncStorage.setItem("token", token);
       } else {
-        console.log("ERROR RESPONSE => ", response.data);
+        // console.log("ERROR RESPONSE => ", response.data);
         /*
         ToastAndroid.showWithGravity(
           `${response.data.message}`,
@@ -82,7 +86,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         */
       }
     } catch (error) {
-      console.log("ERROR => ", error);
+      // console.log("ERROR => ", error);
       /*
     ToastAndroid.showWithGravity(
       "Error interno no servidor! Por favor, tente novamente!",
@@ -95,17 +99,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function registerUser() {
     try {
-      console.log("Entrei na chamada");
+      // console.log("Entrei na chamada");
       const response = await api.post("api/user", {
         name,
         lastname,
         email,
         password,
         birthdate,
+        username,
       });
 
       if (!response.data.message) {
-        console.log("RESPONSE => ", response.data);
+        // console.log("RESPONSE => ", response.data);
         /*
         ToastAndroid.showWithGravity(
           "Novo usuário cadastrado com sucesso!!!",
@@ -114,7 +119,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         );
         */
       } else {
-        console.log("RESPONSE ERROR=> ", response.data);
+        // console.log("RESPONSE ERROR=> ", response.data);
         /*
         ToastAndroid.showWithGravity(
           `${response.data.message}`,
@@ -124,7 +129,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         */
       }
     } catch (error) {
-      console.log("ERROR => ", error);
+      // console.log("ERROR => ", error);
       /*
       ToastAndroid.showWithGravity(
         "Error interno no servidor! Por favor, tente novamente!",

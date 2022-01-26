@@ -19,9 +19,10 @@ const ModuleItem: React.FC<ModuleItemProps> = ({
   image,
   title,
   description,
+  ...rest
 }) => {
   return (
-    <Module>
+    <Module {...rest}>
       <ModuleImg source={image} />
       <ModuleTitle>{title}</ModuleTitle>
       <ModuleSeeMore>
