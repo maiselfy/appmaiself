@@ -39,7 +39,7 @@ export interface Habit {
   }[];
 }
 
-const Habits: React.FC = () => {
+const Habits: React.FC = ({ navigation }) => {
   const { user } = useAuth();
   const [habits, setHabits] = useState<Habit[]>([]);
   const [stabilityAvg, setStabilityAvg] = useState(0);
